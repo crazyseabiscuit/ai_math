@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "ai-math"
+version = "0.1.0"
+description = ""
+authors = ["Bi Chen <878788+crazyseabiscuit@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+numpy = "^2.1.1"
+ipython = "^8.28.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -2,8 +2,10 @@ np.multiply用来实现同类型矩阵对应元素的乘积
 import numpy as np
 a = np.asmatrix([[1,2,3],[4,5,6]])
 b = np.asmatrix([[1,2],[3,4],[5,6]])
-# value error for inhomogeneous shape
-# b1 = np.array([[1,2,3],[3,4],[5,6]])
+
+value error for inhomogeneous shape
+
+b1 = np.array([[1,2,3],[3,4],[5,6]])
 
 
 ## 逆矩阵
@@ -25,6 +27,7 @@ b = np.asmatrix([[1,2],[3,4],[5,6]])
 |A|^{-1} = 1/|A|
 
 ## 矩阵的秩
+矩阵的秩描述了一个矩阵当中线性独立的行或者列的最大数值,主要是应用在解线性方程组，研究向量空间和线性变换等方面
 ### 向量组
 可以使用np.reshape(-1,1)来进行行转列
 比如
@@ -56,4 +59,22 @@ array([[3],
        [1],
        [2]])
 
-##
+## 矩阵的线性相关和线性无关
+比如下面的矩阵就是线性相关的
+$$
+2 \mathbf{v}_1 - \mathbf{v}_2 = 2 \begin{pmatrix} 1 \\ 2 \end{pmatrix} - \begin{pmatrix} 2 \\ 4 \end{pmatrix} = \begin{pmatrix} 2 \\ 4 \end{pmatrix} - \begin{pmatrix} 2 \\ 4 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+$$
+
+## 向量的内积
+什么是向量的内积
+使用np.dot来实现矩阵向量的内积，两个向量的内积的结果是一个实数（标量），两个矩阵相乘的结果是一个矩阵
+内积的计算步骤可以总结为：
+
+列出两个向量的对应分量。
+逐个分量相乘。
+将所有乘积相加.
+与标量对应的是向量，表示具有大小又有方向的量
+
+
+
+

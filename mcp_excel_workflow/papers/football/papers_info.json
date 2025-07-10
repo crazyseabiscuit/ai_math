@@ -1,0 +1,52 @@
+{
+  "1805.08937v1": {
+    "title": "Predicting football tables by a maximally parsimonious model",
+    "authors": [
+      "Kjetil Haugen",
+      "Brynjulf Owren"
+    ],
+    "summary": "This paper presents some useful mathematical results involved in football\ntable prediction. In addition, some empirical results indicate that an\nalternative methodology for football table prediction may produce high quality\nforecasts with far less resource usage than conventional methods.",
+    "pdf_url": "http://arxiv.org/pdf/1805.08937v1",
+    "published": "2018-05-23"
+  },
+  "1811.00300v1": {
+    "title": "Network analysis of the worldwide footballer transfer market",
+    "authors": [
+      "Ming-Xia Li",
+      "Wei-Xing Zhou",
+      "H. Eugene Stanley"
+    ],
+    "summary": "The transfer of football players is an important part in football games. Most\nstudies on the transfer of football players focus on the transfer system and\ntransfer fees but not on the transfer behavior itself. Based on the 470,792\ntransfer records from 1990 to 2016 among 23,605 football clubs in 206 countries\nand regions, we construct a directed footballer transfer network (FTN), where\nthe nodes are the football clubs and the links correspond to the footballer\ntransfers. A systemic analysis is conduced on the topological properties of the\nFTN. We find that the in-degrees, out-degrees, in-strengths and out-strengths\nof nodes follow bimodal distributions (a power law with exponential decay),\nwhile the distribution of link weights has a power-law tail. We further figure\nout the correlations between node degrees, node strengths and link weights. We\nalso investigate the general characteristics of different measures of network\ncentrality. Our network analysis of the global footballer transfer market sheds\nnew lights into the investigation of the characteristics of transfer\nactivities.",
+    "pdf_url": "http://arxiv.org/pdf/1811.00300v1",
+    "published": "2018-11-01"
+  },
+  "2205.10599v1": {
+    "title": "Networks of international football: communities, evolution and globalization of the game",
+    "authors": [
+      "Yang Li",
+      "Gonzalo Mateos"
+    ],
+    "summary": "As the most popular sport around the globe, the game of football has recently\nintrigued much research interest to explore and distill useful and appealing\ninformation from the sport. Network science and graph-centric methods have been\npreviously applied to study the importance of football players and teams. In\nthis paper, for the first time we study the macroscopic evolution of the\nfootball society from a complex network point of view. Football game records\nwithin a time window of over a century were collected and expressed in a graph\nformat, where participant teams are represented by graph nodes and the games\nbetween them are the graph edges. We carry out community detection and temporal\nanalysis to reveal the dynamic features and the community structures embedded\nwithin the football network, offering the evidence of a continuously expanding\nfootball society. Spatio-temporal analysis is also implemented to unveil the\ntemporal states that represent distinct development stages in the football\nhistory. Our analysis suggests that the evolution of the game receives\nconsiderable impact not only from major sport events, but also from multiple\nsocial and political incidents. The game of football and its evolution reflect\nsignificant historical transitions and turning points, and can provide a novel\nperspective for the study of the worldwide globalization process.",
+    "pdf_url": "http://arxiv.org/pdf/2205.10599v1",
+    "published": "2022-05-21"
+  },
+  "2502.15405v2": {
+    "title": "A biomechanical comparison of concussion and head acceleration events in elite-level American football and rugby union",
+    "authors": [
+      "Gregory Tierney"
+    ],
+    "summary": "Elite-level American football and rugby union are two high-contact sports\nwith growing clinical and legal concerns over player safety, necessitating a\ncomparative analysis. A biomechanical comparison of concussion and head\nacceleration events (HAEs) in elite-level American football and rugby union was\nundertaken. Rugby union players have a greater number of professional playing\nyears and matches available in a season than their American football\ncounterparts. Rugby union players have a greater number of concussions reported\nper match and a higher proportion of concussions occurring during training\nsessions, based on National Football League (NFL) and Rugby Football Union\n(RFU) injury reports. Preliminary findings indicate that rugby union forwards\nexperience a higher incidence of HAEs per player match over lower and higher\nmagnitude thresholds, than American football defensive players. Overall,\nelite-level rugby union appears less favourable than American football in in\nalmost all metrics pertinent to concussion and HAE exposure in the\nbiomechanical comparison undertaken. The findings highlight the critical\nimportance of independence, scientific rigour, and transparency in future\nconcussion and HAE biomechanics research and real-world implementation,\nensuring the development of more effective mitigation strategies.",
+    "pdf_url": "http://arxiv.org/pdf/2502.15405v2",
+    "published": "2025-02-21"
+  },
+  "math/0606193v1": {
+    "title": "The classification of football patterns",
+    "authors": [
+      "V. Braungart",
+      "D. Kotschick"
+    ],
+    "summary": "We prove that every spherical football (also known as a spherical soccer\nball) is a branched cover, branched only in the vertices, of the standard\nfootball made up of 12 pentagons and 20 hexagons. We also give examples showing\nthat the corresponding result is not true for footballs of higher genera.\nMoreover, we classify the possible pairs (k,l) for which football patterns on\nthe sphere exist satisfying a natural generalisation of the usual incidence\nrelation between pentagons and hexagons to k-gons and l-gons.",
+    "pdf_url": "http://arxiv.org/pdf/math/0606193v1",
+    "published": "2006-06-08"
+  }
+}

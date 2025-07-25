@@ -19,10 +19,18 @@ import json
 # 2. 自定义LLM类
 # =========================
 class MyCustomLLM(LLM):
+    def __init__(self, tools=None, **kwargs):
+        super().__init__(**kwargs)
+        self._tools = tools or []
+
+    def bind_tools(self, tools):
+        # 返回一个新的 LLM 实例，绑定工具
+        return MyCustomLLM(tools=tools)
 
     def my_model_api(self, prompt):
         # 这里可以对 prompt 做格式化处理
-        return "【模拟回复】" + str(prompt)
+        tool_names = ', '.join([t.name for t in self._tools]) if self._tools else '无'
+        return f"【模拟回复】{prompt}\n[已绑定工具: {tool_names}]"
 
     def _call(self, prompt, stop=None):
         # 这里实现你自己的LLM调用逻辑
@@ -79,8 +87,8 @@ def tool_node(state: AgentState):
 
 
 # 这里需要将工具绑定到LLM（假设你的自定义LLM支持bind_tools方法，否则略过）
-# model = MyCustomLLM().bind_tools(tools)
-model = MyCustomLLM()
+model = MyCustomLLM().bind_tools(tools)
+# model = MyCustomLLM()
 
 
 def call_model(state: AgentState, config=None):

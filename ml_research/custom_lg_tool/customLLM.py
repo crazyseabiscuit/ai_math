@@ -13,30 +13,37 @@ from langgraph.graph import StateGraph, END
 from typing import TypedDict, Annotated, Sequence
 from langgraph.graph.message import add_messages
 import json
+import ollama
+from langchain_core.messages import AIMessage
 
 
 # =========================
 # 2. 自定义LLM类
 # =========================
+def ollama_deepseek_api(prompt, model="deepseek-r1:1.5b"):
+    # 真实调用
+    response = ollama.chat(model=model, messages=[{"role": "user", "content": prompt}])
+    return response['message']['content']
+    # mock 调试用
+    # return f"【模拟 deepseek-r1:1.5b 回复】{prompt}"
+
 class MyCustomLLM(LLM):
     def __init__(self, tools=None, **kwargs):
         super().__init__(**kwargs)
         self._tools = tools or []
 
     def bind_tools(self, tools):
-        # 返回一个新的 LLM 实例，绑定工具
         return MyCustomLLM(tools=tools)
 
     def my_model_api(self, prompt):
-        # 这里可以对 prompt 做格式化处理
-        tool_names = ', '.join([t.name for t in self._tools]) if self._tools else '无'
-        return f"【模拟回复】{prompt}\n[已绑定工具: {tool_names}]"
+        # 只返回字符串
+        if "搜索" in prompt:
+            # 返回特殊标记，供 call_model 判断
+            return "<<TOOL_CALL_SEARCH>>"
+        return "【模拟 deepseek-r1:1.5b 回复】" + str(prompt)
 
     def _call(self, prompt, stop=None):
-        # 这里实现你自己的LLM调用逻辑
-        # 比如调用本地模型或自定义API
-        response = self.my_model_api(prompt)
-        return response
+        return self.my_model_api(prompt)
 
     @property
     def _llm_type(self):
@@ -48,6 +55,7 @@ class MyCustomLLM(LLM):
 # =========================
 def search_tool(query: str) -> str:
     # 这里实现你的工具逻辑
+    print(f"*******************搜索结果: {query}")
     return f"搜索结果: {query}"
 
 
@@ -92,13 +100,47 @@ model = MyCustomLLM().bind_tools(tools)
 
 
 def call_model(state: AgentState, config=None):
-    # 系统提示词
     system_prompt = SystemMessage(
         content="你是一个智能助手，请根据用户的需求调用工具并给出答案。"
     )
-    # 这里假设你的LLM支持messages输入，否则需要适配
-    response = model.invoke([system_prompt] + list(state["messages"]))
-    return {"messages": [response]}
+    prompt = [system_prompt] + list(state["messages"])
+    # 检查历史消息是否已经有 tool_call 或 tool message
+    for msg in reversed(state["messages"]):
+        # 如果已经有 tool message 或 tool_call，直接返回普通回复
+        if isinstance(msg, ToolMessage):
+            return {"messages": [AIMessage(content="【工具已调用，返回最终答案】")]}
+        if hasattr(msg, "tool_calls") and msg.tool_calls:
+            # 已经有 tool_call，不再生成
+            return {"messages": [AIMessage(content="【工具已调用，返回最终答案】")]}
+    response = model.invoke(prompt)
+    if response == "<<TOOL_CALL_SEARCH>>":
+        # 构造 AIMessage，模拟 tool_call
+        return {"messages": [
+            AIMessage(
+                content="",
+                additional_kwargs={
+                    "tool_calls": [
+                        {
+                            "id": "call_search_1",
+                            "type": "function",
+                            "function": {
+                                "name": "search",
+                                "arguments": '{"query": "LangGraph是什么？"}'
+                            }
+                        }
+                    ]
+                },
+                tool_calls=[
+                    {
+                        "name": "search",
+                        "args": {"query": "LangGraph是什么？"},
+                        "id": "call_search_1"
+                    }
+                ]
+            )
+        ]}
+    else:
+        return {"messages": [AIMessage(content=response)]}
 
 
 def should_continue(state: AgentState):
